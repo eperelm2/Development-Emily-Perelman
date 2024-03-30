@@ -1,0 +1,107 @@
+[
+    {
+      "name": "Believe",
+      "artist": "Cher",
+      "length": "3:43",
+      "rating": 4,
+      "image": ""
+    },
+    {
+        "name": "Too Sweet",
+        "artist": "Hozier",
+        "length": "4:15",
+        "rating": 5,
+        "image": ""
+      },
+      {
+        "name": "Chiquitia",
+        "artist": "ABBA",
+        "length": "3:23",
+        "rating": 3,
+        "image": ""
+      },
+      {
+        "name": "Rhyme Dust",
+        "artist": "Dom Dolla",
+        "length": "3:56",
+        "rating": 5,
+        "image": ""
+      },
+      {
+        "name": "Runaway (U & I)",
+        "artist": "Galantis",
+        "length": "4:03",
+        "rating": 5,
+        "image": ""
+      },
+      {
+        "name": "Midnight City",
+        "artist": "M83",
+        "length": "3:37",
+        "rating": 1,
+        "image": ""
+      },
+      {
+        "name": "Emergency",
+        "artist": "Icona Pop",
+        "length": "2:57",
+        "rating": 3,
+        "image": ""
+      },
+      {
+        "name": "Distrubia",
+        "artist": "Rihanna",
+        "length": "4:28",
+        "rating": 4,
+        "image": ""
+      },
+      {
+        "name": "Miss Independent",
+        "artist": "Ne-Yo",
+        "length": "4:56",
+        "rating": 3,
+        "image": ""
+      },
+      {
+        "name": "865",
+        "artist": "Morgan Wallen",
+        "length": "3:23",
+        "rating": 3,
+        "image": ""
+      },
+      {
+        "name": "Fly Away",
+        "artist": "Tones And I",
+        "length": "4:36",
+        "rating": 5,
+        "image": ""
+      },
+      {
+        "name": "Solo",
+        "artist": "Myles Smith",
+        "length": "4:10",
+        "rating": 2,
+        "image": ""
+      },
+      {
+        "name": "Wasted",
+        "artist": "Tiesto",
+        "length": "5:05",
+        "rating": 4,
+        "image": ""
+      },
+      {
+        "name": "Surround Me",
+        "artist": "LEON",
+        "length": "2:37",
+        "rating": 5,
+        "image": ""
+      },
+      {
+        "name": "Ecstasy",
+        "artist": "Bambie",
+        "length": "5:59",
+        "rating": 4,
+        "image": ""
+      }
+  ]
