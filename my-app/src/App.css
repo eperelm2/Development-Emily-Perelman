@@ -1,17 +1,19 @@
 .App {
   text-align: center;
+  display:flex;
 }
 
+
 .song-list-side {
-  flex: 1;
+  flex: 0 0 60vw; 
+  margin-left: 20px;
 }
 
 .favorite-song-side {
-  flex: 0 0 200px; 
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-left: 1px solid #ccc; /* Add a border between the sections */
-  box-sizing: border-box; /* Include border in element's width and height */
+  flex: 1; /* Take up remaining space */
+    padding: 20px; 
+    display: flex;
+    flex-direction: column;
 }
 
 .song-item-grid {
