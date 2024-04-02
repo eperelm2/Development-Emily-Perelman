@@ -1,11 +1,31 @@
-.song-list-side{
-  flex: 0 0 60vw; 
-  margin-left: 20px;
+.App {
+  text-align: center;
 }
 
-.favorite-song-side{
-  flex: 1; 
-  padding: 20px; 
-  display: flex;
-  flex-direction: column;
+.song-list-side {
+  flex: 1;
+}
+
+.favorite-song-side {
+  flex: 0 0 200px; 
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-left: 1px solid #ccc; /* Add a border between the sections */
+  box-sizing: border-box; /* Include border in element's width and height */
+}
+
+.song-item-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  overflow-y: auto;
+}
+
+.song-item {
+  border: 2px solid #acacac;
+  border-radius: 5px;
+}
+
+img {
+  width: 100%;
 }

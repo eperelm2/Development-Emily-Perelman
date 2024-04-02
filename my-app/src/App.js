@@ -1,22 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import songData from "./assets/song-data.json";
+import SongItem from "./components/SongItem.js";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       <h1> Simple Spotify
-       </h1>
+       <h1> Simple Spotify</h1>
 
-       <div class= "song-list-side">
-        don't go breaking my heart
-       </div>
+       <div className="song-list-side">
+            <div className="song-item-grid">
+                {songData.map((item, index) => (
+                <SongItem key={index} song={item} index={index} /> 
+              ))}
+            </div>
+    </div>
 
-       <div class="favorite-song-side">
-       </div>
-        
-       
-      </header>
+    <div class="favorite-song-side">
+      Favorite Songs
+    </div>
     </div>
   );
 }
