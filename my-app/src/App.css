@@ -1,6 +1,9 @@
 .App {
   text-align: center;
-  display:flex;
+}
+
+.list-and-favorites {
+  display: flex;
 }
 
 
@@ -24,8 +27,12 @@
 }
 
 .song-item {
+  /* display:flex; */
+  align-items: center;
+  /* display:column; */
   border: 2px solid #acacac;
   border-radius: 5px;
+
 }
 
 img {
@@ -38,4 +45,18 @@ img {
   justify-content: space-between; 
   border-bottom: 1px solid #ccc; 
   padding: 10px;
+}
+
+.filter{
+  border-radius:30px;
+
+}
+
+.song-name {
+  font-weight: bold;
+}
+
+.name-and-artist{
+  display: flex;
+  flex-direction: column;
 }

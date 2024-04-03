@@ -17,6 +17,7 @@ const SongItem = ({ song, index, addToFavorites }) => {
         
         <p className="song-length">{song.length}</p>
         <p className="song-rating">{song.rating}</p>
+        <p className="song-genre">{song.genre}</p>
         
         </div>
     );
