@@ -2,8 +2,11 @@ import './App.css';
 import songData from "./assets/song-data.json";
 import SongItem from "./components/SongItem.js";
 import { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import {DropdownMenu} from "./components/RatingDropDown.js"
+
+//filter = funnel
+//sort = in order
+
 
 
 function App() {
@@ -21,8 +24,15 @@ function App() {
     }  
 
   return (
+
     <div className="App">
     <h1 className="header"> Simple Spotify</h1>
+
+    
+
+
+    <button> filter genre </button>
+    <button> sorting time </button>
 
        <div className="song-list-side">
       
