@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function DropdownMenu() {
+function RatingDropDown() {
     console.log("i am here at least")
     const [selectedRating, setSelectedRating] = useState('');
   
@@ -31,4 +31,4 @@ function DropdownMenu() {
     )
   }
 
-  export default DropdownMenu
+  export default RatingDropDown

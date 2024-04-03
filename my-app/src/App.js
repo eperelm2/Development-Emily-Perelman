@@ -2,7 +2,7 @@ import './App.css';
 import songData from "./assets/song-data.json";
 import SongItem from "./components/SongItem.js";
 import { useState } from "react";
-import {DropdownMenu} from "./components/RatingDropDown.js"
+import {RatingDropDown} from "./components/RatingDropDown.js"
 
 //filter = funnel
 //sort = in order
@@ -29,7 +29,6 @@ function App() {
     <h1 className="header"> Simple Spotify</h1>
 
     
-
 
     <button> filter genre </button>
     <button> sorting time </button>
