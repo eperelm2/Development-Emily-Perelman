@@ -2,146 +2,182 @@ import './App.css';
 import songData from "./assets/song-data.json";
 import SongItem from "./components/SongItem.js";
 import { useState } from "react";
-
-//filter = funnel
-//sort = in order
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
 function convertToSeconds (length) {
   const [minutes, seconds] = length.split(":").map(Number);
   return minutes * 60 + seconds;
 }
 
-
 function App() {
 
     const [favorites, setFavorites] = useState([])
     const [displayItems, setDisplayItems] = useState(songData)
+    const [selectedRating, setSelectedRating] = useState("allRatings");
+    const [selectedGenre, setSelectedGenre] = useState("allGenres");
+    const [sorted, setSorted] = useState(false);
 
-    const handlePush = (e) => {
-      let value = e.target.value
-      if (value == "allRatings"){
-        setDisplayItems(songData)
-      } else if (value == "oneStar") {
-        const filter = songData.filter(item => item.rating === 1)
-        setDisplayItems(filter);
-      } else if (value == "twoStar") {
-        const filter = songData.filter(item => item.rating === 2)
-        setDisplayItems(filter);
-      } else if (value == "threeStar") {
-        const filter = songData.filter(item => item.rating === 3)
-        setDisplayItems(filter);
-      } else if (value == "fourStar") {
-        const filter = songData.filter(item => item.rating === 4)
-        setDisplayItems(filter);
-      } else if (value == "fiveStar") {
-        const filter = songData.filter(item => item.rating === 5)
-        setDisplayItems(filter);
-      } else if (value == "allGenres") {
-        setDisplayItems(songData);
-      } else if (value == "pop") {
-        const filter = songData.filter(item => item.genre === "Pop")
-        setDisplayItems(filter);
-      } else if (value == "alternative") {
-        const filter = songData.filter(item => item.genre === "Alternative")
-        setDisplayItems(filter);
-      } else if (value == "dance-electronic") {
-        const filter = songData.filter(item => item.genre === "Dance/Electronic")
-        setDisplayItems(filter);
-      } else if (value == "rnb") {
-        const filter = songData.filter(item => item.genre === "R&B")
-        setDisplayItems(filter);
-      } else if (value == "country") {
-        const filter = songData.filter(item => item.genre === "Country")
-        setDisplayItems(filter);
+  
+    const handlePushRating = (e) => {
+      let value = e.target.value;
+      let filter = songData;
+    
+      if (value !== "allRatings") {
+        filter = filter.filter(item => item.rating === parseInt(value));
       }
-    }
+    
+      if (selectedGenre !== "allGenres") {
+        filter = filter.filter(item => item.genre === selectedGenre);
+      }
+    
+      setDisplayItems(filter);
+      setSelectedRating(value);
+    };
+    
+    const handlePushGenre = (e) => {
+      let value = e.target.value;
+      let filter = songData;
+    
+      if (value !== "allGenres") {
+        filter = filter.filter(item => item.genre === value);
+      }
+    
+      if (selectedRating !== "allRatings") {
+        filter = filter.filter(item => item.rating === parseInt(selectedRating));
+      }
+    
+      setDisplayItems(filter);
+      setSelectedGenre(value);
+    };
+    
 
 
     const sort = () => {
-
-
       const sort = [...displayItems].sort((a,b) => {
-        const secondsA = convertToSeconds(a.length)
-        const secondsB = convertToSeconds(b.length)
-
-        return secondsA - secondsB;
-      })
-      // console.log("sort " + sort[0].name)
-      // console.log(convertToSeconds(displayItems[0].length))
+          const secondsA = convertToSeconds(a.length)
+          const secondsB = convertToSeconds(b.length)
+          return secondsA - secondsB;
+        })
+      
+      
       setDisplayItems(sort);
+      setSorted(true);
 
     }
 
-    const addToFavorites = (songName) => {
-      if (!favorites.includes(songName)){
-        const updatedFavorites = [...favorites, songName]
+    const addToFavorites = (song) => {
+      if (!favorites.includes(song)){
+        const updatedFavorites = [...favorites, song]
+        setFavorites(updatedFavorites)
+      } else {
+        const updatedFavorites = favorites.filter(item => item !== song)
         setFavorites(updatedFavorites)
       }
-        
-      }
+    
+    }
 
-    const removeFromFavorites = (songName) => {
-        const updatedFavorites = favorites.filter(item => item !== songName)
+    const removeFromFavorites = (song) => {
+        const updatedFavorites = favorites.filter(item => item !== song)
         setFavorites(updatedFavorites)
     } 
 
     const reset = () => {
       setDisplayItems(songData)
+      setSelectedRating("allRatings")
+      setSelectedGenre("allGenres")
+      setSorted(false);
     }
     
-
   return (
 
     <div className="App">
     <h1 className="header"> Simple Spotify</h1>
 
     <div className = "list-and-favorites">
-
        <div className="song-list-side">
 
-       <button onClick={reset} >Reset</button>
-
-       <button value= "allRatings" onClick = {handlePush} className = "filter"> All Ratings </button>
-       <button value= "oneStar" onClick = {handlePush} className = "filter"> 1 Star </button>
-       <button value= "twoStar" onClick = {handlePush} className = "filter"> 2 Star </button>
-       <button value= "threeStar" onClick = {handlePush} className = "filter"> 3 Star </button>
-       <button value= "fourStar" onClick = {handlePush} className = "filter"> 4 Star </button>
-       <button value= "fiveStar" onClick = {handlePush} className = "filter"> 5 Star </button>
-
-       <button value= "allGenres" onClick = {handlePush} className = "filter"> All Genres </button>
-       <button value= "pop" onClick = {handlePush} className = "filter"> Pop </button>
-       <button value= "alternative" onClick = {handlePush} className = "filter"> Alternative </button>
-       <button value= "dance-electronic" onClick = {handlePush} className = "filter"> Dance/Electronic </button>
-       <button value= "rnb" onClick = {handlePush} className = "filter"> R&B </button>
-       <button value= "country" onClick = {handlePush} className = "filter"> Country </button>
-
-       <button onClick = {sort}> Duration: Short to Long </button>
-      
-            <div className="song-item-grid">
-                {displayItems.map((item, index) => (
-                <SongItem key={index} song={item} index={index} addToFavorites={addToFavorites} /> 
-              ))}
+          <div className='buttons'>
+            <div className="filter-title">Filters and Sorting:</div>
+            <button className= "reset-button" onClick={reset} >Reset</button>
+            <div className="ratingButtons">
+              <button value= "allRatings" onClick = {handlePushRating} className={`filter ${selectedRating === "allRatings" ? "selected" : ""}`}> All Ratings </button>
+              <button value= "1" onClick = {handlePushRating} className={`filter ${selectedRating === "1" ? "selected" : ""}`}> 1 Star </button>
+              <button value= "2" onClick = {handlePushRating} className={`filter ${selectedRating === "2" ? "selected" : ""}`}> 2 Star </button>
+              <button value= "3" onClick = {handlePushRating} className={`filter ${selectedRating === "3" ? "selected" : ""}`}> 3 Star </button>
+              <button value= "4" onClick = {handlePushRating} className={`filter ${selectedRating === "4" ? "selected" : ""}`}> 4 Star </button>
+              <button value= "5" onClick = {handlePushRating} className={`filter ${selectedRating === "5" ? "selected" : ""}`}> 5 Star </button>
             </div>
+
+            <div className="genreButtons">
+
+              <button value= "allGenres" onClick = {handlePushGenre} className={`filter ${selectedGenre === "allGenres" ? "selected" : ""}`}> All Genres </button>
+              <button value= "Pop" onClick = {handlePushGenre} className={`filter ${selectedGenre === "Pop" ? "selected" : ""}`}> Pop </button>
+              <button value= "Alternative" onClick = {handlePushGenre} className={`filter ${selectedGenre === "Alternative" ? "selected" : ""}`}> Alternative </button>
+              <button value= "Dance/Electronic" onClick = {handlePushGenre} className={`filter ${selectedGenre === "Dance/Electronic" ? "selected" : ""}`}> Dance/Electronic </button>
+              <button value= "R&B" onClick = {handlePushGenre} className={`filter ${selectedGenre === "R&B" ? "selected" : ""}`}> R&B </button>
+              <button value= "Country" onClick = {handlePushGenre} className={`filter ${selectedGenre === "Country" ? "selected" : ""}`}> Country </button>
+
+            </div>
+
+            <button className={`sort-button ${sorted === true ? "selected" : ""}`} onClick = {sort}> Duration: Short to Long </button>
+
+
+          </div>
+      
+        <div >
+        <div className="filter-title"> Songs:</div>
+        {displayItems.length===0 ? (
+          <p  className="no-songs-available">Sorry, there are no songs with these features!</p>
+          
+          ) : (
+          <div className="song-item-grid">
+          {displayItems.map((item, index) => (
+            <SongItem key={index} song={item} index={index} addToFavorites={addToFavorites} favoriteList={favorites}/> 
+          ))}
+          </div>
+        )}
+          
+        </div>
     </div>
+
+    
 
     <div class="favorite-song-side">
+    
 
-      <h3>Favorite Songs</h3>
-      <p>Please add your favorite songs!</p>
-      {favorites.map((item,index) => (
-        <div className="favorites-list">
-            {index + 1}. {item}
-            <button className="add-to-cart" onClick={() => removeFromFavorites(item)}>
-                -
-            </button>
-        </div>
-      ))}
+    <h3>Favorite Songs</h3>
+    {favorites.length ===0 ? (<div> </div>) : ( 
+      <div className="number-songs">
+        {favorites.length} songs
+      </div>
+    )}
+      {favorites.length === 0 ? (<p>Please add your favorite songs!</p>) : (
+      <div> 
+        {favorites.map((item,index) => (
+          <div className="favorites-list">
+
+            <div className="favorites-leftSide">
+
+            {index + 1}. <img className= "favorite-image" src={item.image} alt="song-img" /> {item.name}
+
+            </div>
+
+              <div className="favorites-rightSide"> 
+                {item.length}
+                <button className="remove-from-favorites" onClick={() => removeFromFavorites(item)}>
+                  <FontAwesomeIcon icon={faMinus} />
+                </button>
+               </div>
+                  
+          </div>
+        ))}
+      </div>
+      )}
+     
     </div>
     </div>
-
     </div>
-
-   
   );
 }
 

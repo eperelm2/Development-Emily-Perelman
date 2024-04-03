@@ -1,9 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
 .App {
   text-align: center;
+  /* background-color:rgba(0, 14, 62, 0.954); */
+  /* color:rgb(255, 255, 255); */
 }
 
 .list-and-favorites {
   display: flex;
+}
+
+h1{
+  padding-top: 20px;
+  background-color: rgba(0, 14, 62, 0.553);
+  padding: 40px;
+  color:aliceblue;
+  font-family: "Times New Roman", Times, serif;
 }
 
 
@@ -17,6 +33,7 @@
     padding: 20px; 
     display: flex;
     flex-direction: column;
+    
 }
 
 .song-item-grid {
@@ -29,11 +46,15 @@
 .song-item {
   border: 2px solid #acacac;
     border-radius: 5px;
+    background-color: rgb(223, 223, 223);
+    margin-bottom: 20px;
+    color:black;
 
 }
 
-img {
+.list-image {
   width: 100%;
+  height:60%
 }
 
 .favorites-list{
@@ -44,9 +65,32 @@ img {
   padding: 10px;
 }
 
-.filter{
-  border-radius:30px;
+.favorites-leftSide{
+  display: flex;
+  align-items: center;
+}
+ 
+.filter {
+  border-radius:4px;
+  margin-right:8px;
+  float:left;
+  border: 1px solid black;
+  background-color: white;
+}
 
+.filter.selected{
+  background-color: lightskyblue;
+}
+
+.genre-filter{
+  border-radius:30px;
+  margin-right:8px;
+  float:left;
+  border: 1px solid black;
+}
+
+.genre-filter.selected{
+  background-color: lightskyblue;
 }
 
 .song-name {
@@ -69,4 +113,78 @@ img {
   height:50px;
   width:50px;
   margin-top:20px;
+}
+
+.add-to-favorites.favorited{
+  color:green
+}
+
+.additional-elements{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 15px;
+}
+
+.ratingButtons{
+  margin-top:10px;
+}
+
+.genreButtons{
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.filter-title{
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  font-size:15px
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+}
+
+.remove-from-favorites{
+  margin-left:15px;
+}
+
+.favorite-image{
+  width:30px;
+  height:30px;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.reset-button{
+  width: 80px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius:4px;
+}
+
+.no-songs-available{
+  font-size:30px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+
+.sort-button{
+  width:160px;
+  margin-bottom:20px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius:4px;
+}
+
+.sort-button.selected{
+  background-color:lightskyblue;
+}
+
+.filter-title{
+  font-size: 30px;
 }
