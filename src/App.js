@@ -133,8 +133,10 @@ function App() {
        <div className="song-list-side">
 
           <div className='buttons'>
-            <div className="filter-title">Filters and Sorting:</div>
+            
             <button className= "reset-button" onClick={reset} >Reset</button>
+            
+            <div className = "fil-sor">Filter</div>
             <div className="ratingButtons">
               <button value= "allRatings" onClick = {handlePushRating} className={`filter ${selectedRating === "allRatings" ? "selected" : ""}`}> All Ratings </button>
               <button value= "1" onClick = {handlePushRating} className={`filter ${selectedRating === "1" ? "selected" : ""}`}> 1 Star </button>
@@ -145,7 +147,7 @@ function App() {
             </div>
 
             <div className="genreButtons">
-
+            
               <button value= "allGenres" onClick = {handlePushGenre} className={`filter ${selectedGenre === "allGenres" ? "selected" : ""}`}> All Genres </button>
               <button value= "Pop" onClick = {handlePushGenre} className={`filter ${selectedGenre === "Pop" ? "selected" : ""}`}> Pop </button>
               <button value= "Alternative" onClick = {handlePushGenre} className={`filter ${selectedGenre === "Alternative" ? "selected" : ""}`}> Alternative </button>
@@ -154,17 +156,20 @@ function App() {
               <button value= "Country" onClick = {handlePushGenre} className={`filter ${selectedGenre === "Country" ? "selected" : ""}`}> Country </button>
 
             </div>
+            <div className = "fil-sor">Sort</div>
+
           <div className= "sortingButtons">
+          
               <button value = "noSort" className={`sort-button ${sorted === "noSort" ? "selected" : ""}`} onClick = {sort}> No Sort </button>
               <button value = "stl" className={`sort-button ${sorted === "stl" ? "selected" : ""}`} onClick = {sort}> Duration: Short to Long </button>
               <button value = "lts" className={`sort-button ${sorted === "lts" ? "selected" : ""}`} onClick = {sort}> Duration: Long to Short </button>
           </div>
+   
 
 
           </div>
       
         <div >
-        <div className="filter-title"> Songs:</div>
         {displayItems.length===0 ? (
           <p  className="no-songs-available">Sorry, there are no songs with these features!</p>
           
