@@ -14,7 +14,7 @@ const SongItem = ({ song, index, addToFavorites, favoriteList}) => {
 
       <div className = "artist-and-star">
             <div className = "name-and-artist">
-                  <h3 className="song-name">{song.name}</h3>
+                  <h2 className="song-name">{song.name}</h2>
                   <p className="song-artist">{song.artist}</p>
               </div>
 

@@ -1,7 +1,7 @@
 import './App.css';
 import songData from "./assets/song-data.json";
 import SongItem from "./components/SongItem.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,13 +11,15 @@ function convertToSeconds (length) {
 }
 
 function App() {
-
     const [favorites, setFavorites] = useState([])
     const [displayItems, setDisplayItems] = useState(songData)
     const [selectedRating, setSelectedRating] = useState("allRatings");
     const [selectedGenre, setSelectedGenre] = useState("allGenres");
-    const [sorted, setSorted] = useState(false);
+    const [sorted, setSorted] = useState("noSort");
 
+    useEffect(() => {
+      applySort(displayItems);
+    }, [sorted]);
   
     const handlePushRating = (e) => {
       let value = e.target.value;
@@ -30,8 +32,8 @@ function App() {
       if (selectedGenre !== "allGenres") {
         filter = filter.filter(item => item.genre === selectedGenre);
       }
-    
-      setDisplayItems(filter);
+
+      applySort(filter);
       setSelectedRating(value);
     };
     
@@ -46,25 +48,58 @@ function App() {
       if (selectedRating !== "allRatings") {
         filter = filter.filter(item => item.rating === parseInt(selectedRating));
       }
-    
-      setDisplayItems(filter);
+
+      applySort(filter);
       setSelectedGenre(value);
     };
+
+    const applySort = (data) => {
+      let sortedData = [...data];
+
+      if (sorted === "stl") {
+        sortedData.sort((a, b) => {
+          const secondsA = convertToSeconds(a.length);
+          const secondsB = convertToSeconds(b.length);
+          return secondsA - secondsB;
+        });
+        console.log("sorted " + sortedData[0])
+      } else if (sorted === "lts") {
+        sortedData.sort((a, b) => {
+          const secondsA = convertToSeconds(a.length);
+          const secondsB = convertToSeconds(b.length);
+          return secondsB - secondsA;
+        });
+      } 
+      setDisplayItems(sortedData);
+    }
     
 
-
-    const sort = () => {
-      const sort = [...displayItems].sort((a,b) => {
-          const secondsA = convertToSeconds(a.length)
-          const secondsB = convertToSeconds(b.length)
-          return secondsA - secondsB;
-        })
-      
-      
-      setDisplayItems(sort);
-      setSorted(true);
-
-    }
+    const sort = (e) => {
+      let value = e.target.value;
+      if (value === "stl" || value === "lts") {
+        setSorted(value);
+      } else {
+        setSorted("noSort");
+        if (selectedRating !== "allRatings" || selectedGenre !== "allGenres") {
+          let filteredData = [...songData];
+    
+          if (selectedRating !== "allRatings") {
+            filteredData = filteredData.filter(
+              (item) => item.rating === parseInt(selectedRating)
+            );
+          }
+    
+          if (selectedGenre !== "allGenres") {
+            filteredData = filteredData.filter(
+              (item) => item.genre === selectedGenre
+            );
+          }
+          setDisplayItems(filteredData);
+        } else {
+          setDisplayItems(songData);
+        }
+      }
+    };
 
     const addToFavorites = (song) => {
       if (!favorites.includes(song)){
@@ -86,7 +121,7 @@ function App() {
       setDisplayItems(songData)
       setSelectedRating("allRatings")
       setSelectedGenre("allGenres")
-      setSorted(false);
+      setSorted("noSort");
     }
     
   return (
@@ -119,8 +154,11 @@ function App() {
               <button value= "Country" onClick = {handlePushGenre} className={`filter ${selectedGenre === "Country" ? "selected" : ""}`}> Country </button>
 
             </div>
-
-            <button className={`sort-button ${sorted === true ? "selected" : ""}`} onClick = {sort}> Duration: Short to Long </button>
+          <div className= "sortingButtons">
+              <button value = "noSort" className={`sort-button ${sorted === "noSort" ? "selected" : ""}`} onClick = {sort}> No Sort </button>
+              <button value = "stl" className={`sort-button ${sorted === "stl" ? "selected" : ""}`} onClick = {sort}> Duration: Short to Long </button>
+              <button value = "lts" className={`sort-button ${sorted === "lts" ? "selected" : ""}`} onClick = {sort}> Duration: Long to Short </button>
+          </div>
 
 
           </div>
@@ -137,22 +175,19 @@ function App() {
           ))}
           </div>
         )}
-          
         </div>
     </div>
 
     
 
     <div class="favorite-song-side">
-    
-
     <h3>Favorite Songs</h3>
     {favorites.length ===0 ? (<div> </div>) : ( 
       <div className="number-songs">
         {favorites.length} songs
       </div>
     )}
-      {favorites.length === 0 ? (<p>Please add your favorite songs!</p>) : (
+      {favorites.length === 0 ? (<p className="add-favorite-words">Please add your favorite songs!</p>) : (
       <div> 
         {favorites.map((item,index) => (
           <div className="favorites-list">
