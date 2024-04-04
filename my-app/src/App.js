@@ -127,7 +127,7 @@ function App() {
   return (
 
     <div className="App">
-    <h1 className="header"> Simple Spotify</h1>
+    <h1 className="header"> Simple Song</h1>
 
     <div className = "list-and-favorites">
        <div className="song-list-side">

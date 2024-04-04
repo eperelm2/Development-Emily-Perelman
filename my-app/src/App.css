@@ -1,6 +1,7 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 .App {
@@ -11,12 +12,13 @@ body {
   display: flex;
 }
 
-h1{
-  padding-top: 20px;
-  background-color: rgba(0, 14, 62, 0.553);
+.header{
+  background-color: rgb(0, 14, 62);
   padding: 40px;
-  color:aliceblue;
-  font-family: "Times New Roman", Times, serif;
+  color:rgb(240, 243, 255);
+  /* font-family: "Times New Roman", Times, serif; */
+  font-size:40px;
+  margin: 0;
 }
 
 
@@ -26,10 +28,12 @@ h1{
 }
 
 .favorite-song-side {
-  flex: 1; /* Take up remaining space */
+    flex: 1; 
     padding: 20px; 
     display: flex;
     flex-direction: column;
+    border-left: 2px solid #acacac;
+    margin-left:5px;
     
 }
 
@@ -43,14 +47,13 @@ h1{
 .song-item {
   border: 2px solid #acacac;
     border-radius: 5px;
-    
-    background-color: rgb(223, 223, 223);
+    background-color:  rgba(0, 14, 62, 0.229);
+    /* rgb(223, 223, 223); */
     margin-bottom: 20px;
     color:black;
-    
-    overflow: hidden; /* Hides any content that overflows the element */
-    white-space: nowrap; /* Prevents wrapping of text */
-    text-overflow: ellipsis; /* Displays an ellipsis (...) to indicate truncated text */
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
 
 }
 
@@ -81,7 +84,8 @@ h1{
 }
 
 .filter.selected{
-  background-color: lightskyblue;
+  background-color: rgb(65, 69, 63);
+  color:white;
 }
 
 
@@ -94,7 +98,8 @@ h1{
 }
 
 .genre-filter.selected{
-  background-color: lightskyblue;
+  background-color: rgb(65, 69, 63);
+  color:white;
 }
 
 .song-name {
@@ -117,10 +122,9 @@ h1{
   height:50px;
   width:50px;
   margin-top:20px;
-}
-
-.add-to-favorites.favorited{
-  color:green
+  background-color: white;
+  border: 1px solid grey;
+  border-radius:4px;
 }
 
 .additional-elements{
@@ -143,9 +147,9 @@ h1{
 .filter-title{
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-size:15px;
-  margin-top:8px;
+  margin-top:10px;
 }
 
 .buttons{
@@ -171,6 +175,10 @@ h1{
   border-radius:4px;
 }
 
+.reset-button:active {
+  background-color: darkgray;
+}
+
 .no-songs-available{
   font-size:30px;
   font-weight: bold;
@@ -187,7 +195,8 @@ h1{
 }
 
 .sort-button.selected{
-  background-color:lightskyblue;
+  background-color: rgb(65, 69, 63);
+  color:white;
 }
 
 .filter-title{
